@@ -24,3 +24,5 @@ docker compose up -d
 ```
 
 Since this is only a PoC, the API is running on HTTP and you would be able to access its swagger via http://localhost:8080/swagger/index.html
+
+The metrics for the API can be found at http://localhost:1234/metrics

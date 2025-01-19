@@ -14,4 +14,6 @@ WORKDIR /app
 
 EXPOSE 8080
 
+EXPOSE 1234
+
 ENTRYPOINT [ "dotnet", "WebApplication1.dll", "--configuration Default Configuration" ]

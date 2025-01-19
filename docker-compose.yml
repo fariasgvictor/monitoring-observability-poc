@@ -7,9 +7,8 @@ services:
       - monitoring-observability-poc-network
     environment:
       TZ: UTC-3
-    # volumes:
-    #   - prometheus-alerts-file:/
-    #   - prometheus-configuration-file:/
+    volumes:
+      - ${PWD}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
     platform: linux/amd64
@@ -38,6 +37,7 @@ services:
         ASPNETCORE_ENVIRONMENT: Development
     ports:
       - 8080:8080
+      - 1234:1234
     platform: linux/amd64
 volumes:
   grafana-storage:

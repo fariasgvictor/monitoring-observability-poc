@@ -5,6 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+using var server = new Prometheus.KestrelMetricServer(port: 1234);
+server.Start();
+
+Console.WriteLine("Open http://localhost:1234/metrics in a web browser.");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
