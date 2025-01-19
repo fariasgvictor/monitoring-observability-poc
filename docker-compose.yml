@@ -26,19 +26,19 @@ services:
     ports:
       - 3000:3000
     platform: linux/amd64
-  # api:
-  #   image:
-  #   container_name: api
-  #   restart: always
-  #   networks:
-  #     - monitoring-observability-poc-network
-  #   environment:
-  #     A: b
-  #   volumes:
-  #     - a
-  #   ports:
-  #     - 0:0
-  #   platform: linux/amd64
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: capi
+    restart: always
+    networks:
+      - monitoring-observability-poc-network
+    environment:
+        ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - 8080:8080
+    platform: linux/amd64
 volumes:
   grafana-storage:
 networks:

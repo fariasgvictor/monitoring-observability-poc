@@ -14,3 +14,13 @@ flowchart TD
     grafana[Grafana] -- Consumes --> prometheus_api
     internal_customer((Internal Customer)) -- Visualizes Dashboards --> grafana
 ```
+
+## Running Instructions
+
+To run this project, all you need to do is to run docker compose command
+
+```
+docker compose up -d
+```
+
+Since this is only a PoC, the API is running on HTTP and you would be able to access its swagger via http://localhost:8080/swagger/index.html
