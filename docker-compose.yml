@@ -1,0 +1,48 @@
+services:
+  prometheus:
+    image: ubuntu/prometheus:2.53.3-24.04_stable
+    restart: always
+    container_name: prometheus-poc
+    networks:
+      - monitoring-observability-poc-network
+    environment:
+      TZ: UTC-3
+    # volumes:
+    #   - prometheus-alerts-file:/
+    #   - prometheus-configuration-file:/
+    ports:
+      - 9090:9090
+    platform: linux/amd64
+  grafana:
+    image: grafana/grafana:11.4.0-ubuntu
+    container_name: grafana-poc
+    restart: always
+    networks:
+      - monitoring-observability-poc-network
+    # environment:
+    #   A: b
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    ports:
+      - 3000:3000
+    platform: linux/amd64
+  # api:
+  #   image:
+  #   container_name: api
+  #   restart: always
+  #   networks:
+  #     - monitoring-observability-poc-network
+  #   environment:
+  #     A: b
+  #   volumes:
+  #     - a
+  #   ports:
+  #     - 0:0
+  #   platform: linux/amd64
+volumes:
+  grafana-storage:
+networks:
+  monitoring-observability-poc-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"
