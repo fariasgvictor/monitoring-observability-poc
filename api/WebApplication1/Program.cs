@@ -8,6 +8,10 @@ builder.Services.AddSwaggerGen();
 using var server = new Prometheus.KestrelMetricServer(port: 1234);
 server.Start();
 
+var customDotNetMeters = new CustomDotNetMeters();
+
+customDotNetMeters.PublishRequestsToWeather();
+
 Console.WriteLine("Open http://localhost:1234/metrics in a web browser.");
 
 var app = builder.Build();
@@ -36,6 +40,7 @@ app.MapGet("/weatherforecast", () =>
             summaries[Random.Shared.Next(summaries.Length)]
         ))
         .ToArray();
+    customDotNetMeters.requestsToWeather++;
     return forecast;
 })
 .WithName("GetWeatherForecast")
