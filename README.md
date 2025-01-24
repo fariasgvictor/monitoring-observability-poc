@@ -26,3 +26,7 @@ docker compose up -d
 Since this is only a PoC, the API is running on HTTP and you would be able to access its swagger via http://localhost:8080/swagger/index.html
 
 The metrics for the API can be found at http://localhost:1234/metrics
+
+## Next Steps
+
+We need to also bring the Grafana configuration file to the repo and to create a volume for Grafana configuration on Docker Compose file.
